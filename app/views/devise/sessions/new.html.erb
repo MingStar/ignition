@@ -27,6 +27,12 @@
 		</div>
 	</div>
   <% end -%>
+    <div class="control-group">
+      <span class="control-label">OR</span>
+      <div class="controls">
+        <%= link_to "Sign in with Google", omniauth_authorize_path(resource_name, :google_oauth2), :class => 'google-login' %>
+      </div>
+    </div>
 
 	<div class="form-actions">
 	  <%= f.submit "Sign in", :class => 'btn btn-inverse' %>
