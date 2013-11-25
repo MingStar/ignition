@@ -9,6 +9,10 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
+# loads the application.yml file and makes its values available globally
+APP_CONFIG = YAML::load(ERB.new(File.read(File.expand_path('../application.yml', __FILE__))).result)
+APP_CONFIG.merge! APP_CONFIG.fetch(Rails.env, {})
+
 module Ignition
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.

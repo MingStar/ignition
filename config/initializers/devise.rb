@@ -205,6 +205,16 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
 
+  require 'omniauth-google-oauth2'
+  config.omniauth :google_oauth2, APP_CONFIG["google_key"], APP_CONFIG["google_secret"],
+               {
+                  :scope => "userinfo.email,userinfo.profile,plus.me",
+                  :approval_prompt => "auto",
+                  :client_options => {:proxy => APP_CONFIG['proxy_server']},
+                  access_type: "offline",
+                  approval_prompt: ""
+               }
+
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
@@ -216,3 +226,5 @@ Devise.setup do |config|
 
   config.secret_key = '5f44a777f423614aa56fe52f2d0b209c2f7d3e9b29f5b531c99aa31f34ff2a76c4adf99d90f658bef768ec28a21913e09b72467e249e8c250f175d1759ea2e8b'
 end
+
+
